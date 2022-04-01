@@ -1,9 +1,15 @@
 #include <iostream>
+
 #include <vector>
 
 using namespace std;
 
-vector<vector<int> > farm;
+struct Input
+{
+   int row;
+   int column;
+   vector<vector<int>> land;
+};
 //----------------
 long int
 Sum(
