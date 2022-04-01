@@ -11,13 +11,15 @@ struct Input
    vector<vector<int>> land;
 };
 //----------------
-long int
-Sum(
-    vector<int> v
-) {
-     long int sum = 0;
-    for (int i = 0; i < v.size(); i++)
-    sum += v[i];
+long int calculate_sum(vector<int> each_line)
+{
+    long int sum = 0;
+
+    for (int i = 0; i < each_line.size(); i++)
+    {
+       sum += each_line[i];
+    }
+
     return sum;
 }
 //--------------------------------
