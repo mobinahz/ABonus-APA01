@@ -10,7 +10,32 @@ struct Input
    int column;
    vector<vector<int>> land;
 };
-//----------------
+
+
+
+Input get_input()
+{
+   int product;
+   Input input;
+   
+   cin >> input.row >> input.column;
+
+   vector<vector<int>> farm_land(input.row, vector<int>(input.column));
+
+   for(int i = 0; i < input.row; i++)
+   {
+      for(int j = 0; j < input.column; j++)
+      {
+         cin >> product;
+         farm_land[i][j] = product;
+      }
+   }
+   input.land = farm_land;
+
+   return input; 
+}
+
+
 long int calculate_sum(vector<int> each_line)
 {
     long int sum = 0;
@@ -75,21 +100,10 @@ void solve(int m, int n, long int& harvest){
     }
 }
 /*----------------*/
-int main() {
-    int m, n;
-    int    product;
-    
+int main() 
+{
+    Input input;
     long int harvest = 0;
-    cin>>m>> n;
-    farm = vector < vector < int > > (m, vector<int>(n));
-    for(int i = 0 ; i < m ; i++){
-        for(int j = 0 ; j < n ; j++){
-            cin >> product;farm[i][j] = product;
-        }
-    
-    }
-
-    
     
     // solve
     solve(m, n, harvest);
