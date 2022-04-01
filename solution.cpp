@@ -11,6 +11,11 @@ struct Input
    vector<vector<int>> land;
 };
 
+struct Data
+{
+   long int max;
+   int current;
+};
 
 
 Input get_input()
@@ -47,7 +52,25 @@ long int calculate_sum(vector<int> each_line)
 
     return sum;
 }
-//--------------------------------
+
+
+vector<long int> calculate_sum_of_the_rows(int row, vector<vector<int>> farm_land)
+{
+
+   long int sum = 0;
+   vector<long int> row_sum;
+
+   for(int i = 0; i < row; i++)
+   {
+      sum = calculate_sum(farm_land[i]);
+      row_sum.push_back(sum);
+      sum = 0;
+   }
+
+   return row_sum;
+}
+
+
 long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
 {
     int max_row = 0;
@@ -56,15 +79,12 @@ long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
     long int chosen = 0;
     vector<long int> row_sums;
     vector<long int> column_sums;
+    Data row_data;
+    Data column_data;
 
-    for(int move = 0; move < 4; move++) {
-        vector<long int> row_sums;
-
-        for(int i = 0; i < m; i++){
-            sum = Sum(farm[i]);
-            row_sums.push_back(sum);
-            sum = 0;
-        }
+    for(int move = 0; move < 4; move++) 
+    {
+        row_sums = calculate_sum_of_the_rows(row, farm_land);
 
         for(int i = 0; i < m; i++){
             if (row_sums[i] > max_row) {
