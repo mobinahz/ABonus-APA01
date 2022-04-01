@@ -48,12 +48,14 @@ long int calculate_sum(vector<int> each_line)
     return sum;
 }
 //--------------------------------
-void solve(int m, int n, long int& harvest){
-    long int sum = 0;
+long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
+{
     int max_row = 0;
-    int maxColumn = 0;
-    int row = 0;
-    int column = 0;
+    int max_column = 0;
+    long int harvest = 0;
+    long int chosen = 0;
+    vector<long int> row_sums;
+    vector<long int> column_sums;
 
     for(int move = 0; move < 4; move++) {
         vector<long int> row_sums;
@@ -105,6 +107,7 @@ int main()
     Input input;
     long int harvest = 0;
     
+    input = get_input();
     // solve
     solve(m, n, harvest);
     cout<<harvest;
