@@ -71,6 +71,25 @@ vector<long int> calculate_sum_of_the_rows(int row, vector<vector<int>> farm_lan
 }
 
 
+vector<long int> calculate_sum_of_the_columns(int row, int column, vector<vector<int>> farm_land)
+{
+   long int sum = 0;
+   vector<long int> column_sum;
+   
+   for(int j = 0; j < column; j++)
+   { 
+      for(int i = 0; i < row; i++)
+      {
+         sum += farm_land[i][j];
+      }
+      column_sum.push_back(sum);
+      sum = 0;
+   }
+
+   return column_sum;
+}
+
+
 long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
 {
     int max_row = 0;
@@ -85,24 +104,9 @@ long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
     for(int move = 0; move < 4; move++) 
     {
         row_sums = calculate_sum_of_the_rows(row, farm_land);
+        
+        column_sums = calculate_sum_of_the_columns(row, column, farm_land);
 
-        for(int i = 0; i < m; i++){
-            if (row_sums[i] > max_row) {
-                max_row = row_sums[i];
-                row = i;
-            }
-        }
-
-        for(int j = 0; j < n; j++){
-            for(int i = 0; i < m; i++){
-                sum += farm[i][j];
-            }
-            if(sum > maxColumn){
-                maxColumn = sum;
-                column = j;
-            }
-            sum = 0;
-        }
         if(maxColumn > max_row){
             harvest += maxColumn;
             for(int i = 0; i < m; i++){
