@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include <vector>
 
 using namespace std;
@@ -10,6 +9,7 @@ struct Input
    int column;
    vector<vector<int>> land;
 };
+
 
 struct Data
 {
@@ -43,20 +43,19 @@ Input get_input()
 
 long int calculate_sum(vector<int> each_line)
 {
-    long int sum = 0;
+   long int sum = 0;
+   
+   for (int i = 0; i < each_line.size(); i++)
+   {
+      sum += each_line[i];
+   }
 
-    for (int i = 0; i < each_line.size(); i++)
-    {
-       sum += each_line[i];
-    }
-
-    return sum;
+   return sum;
 }
 
 
 vector<long int> calculate_sum_of_the_rows(int row, vector<vector<int>> farm_land)
 {
-
    long int sum = 0;
    vector<long int> row_sum;
 
@@ -140,10 +139,11 @@ void delete_the_row(int column, int current_row, vector<vector<int>> & farm_land
    }
 }
 
+
 long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
 {
-    int max_row = 0;
-    int max_column = 0;
+    long int max_row = 0;
+    long int max_column = 0;
     long int harvest = 0;
     long int chosen = 0;
     vector<long int> row_sums;
@@ -168,11 +168,13 @@ long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
         {
            delete_the_row(column, row_data.current, farm_land);
         }
+
         row_data.max = 0;
         column_data.max = 0;
         row_data.current = 0;
         column_data.current = 0;
     }
+
     return harvest;
 }
 
@@ -185,13 +187,13 @@ void print_the_output(long int harvest)
 
 int main() 
 {
-    Input input;
-    long int harvest = 0;
+   Input input;
+   long int harvest = 0;
     
-    input = get_input();
-    harvest = calculate_best_ways(input.land, input.column, input.row);
-    print_the_output(harvest);
+   input = get_input();
+   harvest = calculate_best_ways(input.land, input.column, input.row);
+   print_the_output(harvest);
 
-    return 0;
+   return 0;
 } 
 
