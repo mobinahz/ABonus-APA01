@@ -123,6 +123,23 @@ long int choose_the_way(long int harvest, long int max_row, long int max_column)
 }
 
 
+void delete_the_column(int row, int current_column, vector<vector<int>> & farm_land)
+{
+   for(int i = 0; i < row; i++)
+   {
+      farm_land[i][current_column] = 0;
+   }
+}
+
+
+void delete_the_row(int column, int current_row, vector<vector<int>> & farm_land)
+{
+   for(int j = 0; j < column; j++)
+   {
+      farm_land[current_row][j] = 0;
+   }
+}
+
 long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
 {
     int max_row = 0;
@@ -145,11 +162,11 @@ long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
 
         if(column_data.max > row_data.max)
         {
-           
+           delete_the_column(row, column_data.current, farm_land);   
         } 
         else
         {
-        
+           delete_the_row(column, row_data.current, farm_land);
         }
         row_data.max = 0;
         column_data.max = 0;
