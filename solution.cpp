@@ -108,6 +108,21 @@ Data calculate_the_max(long int max, vector<long int> sums)
 }
 
 
+long int choose_the_way(long int harvest, long int max_row, long int max_column)
+{
+   if(max_column > max_row)
+   {
+      harvest += max_column;
+   }
+   else
+   { 
+      harvest += max_row;
+   }
+
+   return harvest;
+}
+
+
 long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
 {
     int max_row = 0;
@@ -125,20 +140,25 @@ long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
         row_data = calculate_the_max(max_row, row_sums);       
         column_sums = calculate_sum_of_the_columns(row, column, farm_land);
         column_data = calculate_the_max(max_column, column_sums);
+        chosen = harvest;
+        harvest = choose_the_way(chosen, row_data.max, column_data.max);
 
-        else{
-            harvest += max_row;
-            for(int j = 0; j < n; j++){
-                farm[row][j] = 0;
-            }
+        if(column_data.max > row_data.max)
+        {
+           
+        } 
+        else
+        {
+        
         }
-        row = 0;
-        column = 0;
-        maxColumn = 0;
-        max_row = 0;
+        row_data.max = 0;
+        column_data.max = 0;
+        row_data.current = 0;
+        column_data.current = 0;
     }
+    return harvest;
 }
-/*----------------*/
+
 int main() 
 {
     Input input;
