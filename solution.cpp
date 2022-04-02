@@ -176,15 +176,22 @@ long int calculate_best_ways(vector<vector<int>> farm_land, int column, int row)
     return harvest;
 }
 
+
+void print_the_output(long int harvest)
+{
+   cout << harvest << endl;
+}
+
+
 int main() 
 {
     Input input;
     long int harvest = 0;
     
     input = get_input();
-    // solve
-    solve(m, n, harvest);
-    cout<<harvest;
+    harvest = calculate_best_ways(input.land, input.column, input.row);
+    print_the_output(harvest);
+
     return 0;
     cout << "Hello there! I'm unreachable!" << endl;
 } // main
