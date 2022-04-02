@@ -193,7 +193,5 @@ int main()
     print_the_output(harvest);
 
     return 0;
-    cout << "Hello there! I'm unreachable!" << endl;
-} // main
+} 
 
-// no reason for this comment
